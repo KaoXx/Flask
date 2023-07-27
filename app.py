@@ -10,11 +10,11 @@ create_table()
 @app.route('/')
 def index():
  # Obtener la dirección IP del cliente desde el encabezado X-Forwarded-For
-    ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+    ip_address = request.headers.get('X-Real-IP', request.remote_addr)
 
     # Asegurarse de obtener la dirección IP pública en caso de que haya múltiples direcciones en el encabezado
     ip_address = ip_address.split(',')[0].strip()
-
+    
     # Resto del código para obtener la ubicación
     data = getData()
     
