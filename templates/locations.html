@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ubicaciones</title>
+</head>
+<body>
+    <h1>Ubicaciones almacenadas</h1>
+    <ul>
+        {% for location in locations %}
+        <li>
+            Dirección IP: {{ location[1] }} |
+            Latitud: {{ location[2] }} |
+            Longitud: {{ location[3] }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
