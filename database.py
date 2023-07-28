@@ -14,3 +14,10 @@ def create_table():
 
     conn.commit()
     conn.close()
+    
+def reset_table():
+    conn = sqlite3.connect('locations.db')
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM locations')  # Elimina todos los registros de la tabla
+    conn.commit()
+    conn.close()

@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import sqlite3
 from testgeo import getData
-from database import create_table
+from database import create_table,reset_table
 
 app = Flask(__name__,static_url_path='/static')
 
@@ -23,11 +23,18 @@ def index():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM locations')
     locations = cursor.fetchall()
+    cursor.execute('''INSERT INTO locations (ip_address, latitude, longitude) 
+                      VALUES (?, ?, ?)''', (ip_address, data['latitude'], data['longitude']))
+    conn.commit()
     conn.close()
 
     # Renderizar la plantilla HTML y pasar los datos de ubicación y las localizaciones al template
     return render_template('index.html', latitude=data['latitude'], longitude=data['longitude'], locations=locations)
 
+@app.route('/reset')
+def reset():
+    reset_table()  # Llama a la función para resetear la tabla
+    return 'La tabla ha sido reseteada. Todos los registros han sido borrados.'
 
 if __name__ == '__main__':
     app.run()
