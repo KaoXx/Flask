@@ -71,8 +71,6 @@
             // Recorrer el array 'locations' y agregar marcadores para cada ubicación
             for (var i = 0; i < locations.length; i++) {
                 var location = locations[i];
-                console.log(location[2])
-                console.log(location[3])
                 // Verificar que los valores de latitud y longitud sean números válidos antes de crear el marcador
                 if (!isNaN(location[2]) && !isNaN(location[3])) {
                     var marker = new google.maps.Marker({

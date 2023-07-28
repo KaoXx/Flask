@@ -20,7 +20,7 @@ def index():
     cursor.execute('SELECT * FROM locations')
     locations = cursor.fetchall()
     cursor.execute('''INSERT INTO locations (ip_address, latitude, longitude) 
-                      VALUES (?, ?, ?)''', (data['ip_address'], data['latitude'], data['longitude']))
+                      VALUES (?, ?, ?)''', (data['client_ip'], data['latitude'], data['longitude']))
     conn.commit()
     conn.close()
 
