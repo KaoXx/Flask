@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 import sqlite3
-from testgeo import getData
+from locator import getData
 from database import create_table,reset_table
 
 app = Flask(__name__,static_url_path='/static')
@@ -9,11 +9,7 @@ create_table()
 
 @app.route('/')
 def index():
- # Obtener la dirección IP del cliente desde el encabezado X-Forwarded-For
-    ip_address = request.headers.get('X-Forwarded-For')
 
-    # Asegurarse de obtener la dirección IP pública en caso de que haya múltiples direcciones en el encabezado
-    ip_address = ip_address.split(',')[0].strip()
     
     # Resto del código para obtener la ubicación
     data = getData()
@@ -24,7 +20,7 @@ def index():
     cursor.execute('SELECT * FROM locations')
     locations = cursor.fetchall()
     cursor.execute('''INSERT INTO locations (ip_address, latitude, longitude) 
-                      VALUES (?, ?, ?)''', (ip_address, data['latitude'], data['longitude']))
+                      VALUES (?, ?, ?)''', (data['ip_address'], data['latitude'], data['longitude']))
     conn.commit()
     conn.close()
 
