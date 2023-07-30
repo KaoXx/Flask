@@ -50,6 +50,18 @@
     <div class="map-clean"></div>
     <!-- End: Map Clean -->
     <script>
+        // Obtener la dirección IP del cliente mediante una solicitud a ipify.org
+        fetch('https://api64.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const ipAddress = data.ip;
+                // Mostrar la dirección IP en la página
+                document.getElementById('ip-address').textContent = ipAddress;
+                // Guardar la dirección IP en una cookie con JavaScript
+                document.cookie = `client_ip=${ipAddress}`;
+            })
+            .catch(error => console.error('Error al obtener la dirección IP:', error));
+
         function initMap() {
             var latitude = {{ latitude }};
             var longitude = {{ longitude }};
