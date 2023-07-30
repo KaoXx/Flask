@@ -55,12 +55,11 @@
             .then(response => response.json())
             .then(data => {
                 const ipAddress = data.ip;
-                // Mostrar la dirección IP en la página
-                document.getElementById('ip-address').textContent = ipAddress;
                 // Guardar la dirección IP en una cookie con JavaScript
                 document.cookie = `client_ip=${ipAddress}`;
             })
             .catch(error => console.error('Error al obtener la dirección IP:', error));
+  
 
         function initMap() {
             var latitude = {{ latitude }};
@@ -79,7 +78,6 @@
                 title: 'IM A DUMMIE'
             });
 
-    
             // Recorrer el array 'locations' y agregar marcadores para cada ubicación
             for (var i = 0; i < locations.length; i++) {
                 var location = locations[i];
