@@ -5,15 +5,17 @@ from database import create_table, reset_table
 
 app = Flask(__name__, static_url_path='/static')
 
+
 try:
     create_table()
 except sqlite3.Error as sqlite_error:
     # Manejar errores relacionados con la base de datos SQLite
     print(f"Error de base de datos SQLite al crear la tabla: {sqlite_error}")
 
-@app.route('/')
+@app.route('/h4ck3d')
 def index():
     try:
+        getCookie()
         client_ip = request.cookies.get('client_ip')
         # Resto del código para obtener la ubicación
         data = getData(client_ip)
@@ -37,6 +39,11 @@ def index():
     except Exception as e:
         # Manejar otras excepciones no previstas
         print(f"Error inesperado en la función index: {e}")
+
+      
+@app.route('/')
+def getCookie():
+    return render_template('h4ck3d.html')
 
 @app.route('/reset')
 def reset():

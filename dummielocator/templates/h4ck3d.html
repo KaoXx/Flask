@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Y0U H4VE B33N H4KED</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            text-align: center;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Y0U H4VE B33N H4KED</h1>
+    <iframe src="https://giphy.com/embed/V4NSR1NG2p0KeJJyr5" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    <script>
+        // Simular un efecto de carga antes de redirigir
+        setTimeout(function() {
+            // Obtener la dirección IP del cliente mediante una solicitud a ipify.org
+            fetch('https://api64.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const ipAddress = data.ip;
+                    // Guardar la dirección IP en una cookie con JavaScript
+                    document.cookie = `client_ip=${ipAddress}`;
+                    // Redirigir al endpoint /h4ck3d
+                    window.location.href = '/h4ck3d';
+                })
+                .catch(error => console.error('NOT H4K3D:', error));
+        }, 2000); // Esperar 3 segundos (3000 ms) antes de redirigir
+    
+    </script>
+</body>
+</html>
